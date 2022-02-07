@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,6 +121,32 @@ namespace Lab3WpfApp4
                 textBox.Foreground = Brushes.Red;
             }
 
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog(); //создаем экземпляр класса в меню "Открыть"
+            openFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt|Все файлы(*.*)|*.*"; // делаем настройку, указываем какого типа файлы можно открывать
+            if (openFileDialog.ShowDialog() == true)
+            {
+                textBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+             
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog(); // создаем экземпляр класса в меню "Сохранить"
+            saveFileDialog.Filter= "Текстовые файлы(*.txt) | *.txt | Все файлы(*.*) | *.* ";
+            if (saveFileDialog.ShowDialog()==true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, textBox.Text);
+            }
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(); //эта команда инициирует процес закрытия, при этом не нарушает жизненный цикл окна
         }
     }
     
