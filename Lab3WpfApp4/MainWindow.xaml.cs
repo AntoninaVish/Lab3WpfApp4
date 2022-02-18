@@ -144,9 +144,14 @@ namespace Lab3WpfApp4
             }
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        //private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        //{
+        //    Application.Current.Shutdown(); //эта команда инициирует процес закрытия, при этом не нарушает жизненный цикл окна
+        //}
+
+        private void CloseExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            Application.Current.Shutdown(); //эта команда инициирует процес закрытия, при этом не нарушает жизненный цикл окна
+            Application.Current.Shutdown(); //команда на "выход"(закрытие)
         }
     }
     

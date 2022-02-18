@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Lab3WpfApp4"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="MenuItem_Click"/>
+        <CommandBinding Command="Save" Executed="MenuItem_Click_1"/>
+        
+    </Window.CommandBindings>
     <Grid>
         
         <Grid.RowDefinitions>
@@ -15,10 +20,15 @@
         </Grid.RowDefinitions>
         <Menu Padding="5">
             <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
-                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
+                <MenuItem Header="_Открыть" Command="ApplicationCommands.Open"/>
+                <MenuItem Header="_Сохранить" Command="ApplicationCommands.Save"/>
                 <Separator/>
-                <MenuItem Header="_Закрыть" Click="MenuItem_Click_2"/>
+                <MenuItem Command="local:MyCommands.Close">
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="local:MyCommands.Close" Executed="CloseExecuted"/>
+                    </MenuItem.CommandBindings>
+                    
+                </MenuItem>
             </MenuItem>
            
         </Menu>
