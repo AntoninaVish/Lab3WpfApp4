@@ -153,6 +153,15 @@ namespace Lab3WpfApp4
         {
             Application.Current.Shutdown(); //команда на "выход"(закрытие)
         }
+
+        private void themas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear(); //подключение в словарь рессурсов програмно толи светлая тема толи темная
+            Uri theme = new Uri(themes.SelectedIndex == 0 ? "Light.xaml" : "Dark.xaml", UriKind.Relative); //получаем ссылку в виде объекта Uri на нужную тему, для этого воспользуемся конструктором
+                                                                                                         // в качестве аргументов указываем название нужной темы (светлая тема или темная тема)
+            ResourceDictionary themeDict = Application.LoadComponent(theme) as ResourceDictionary; //подключаем нужную тему, которую мы получили Uri
+            Application.Current.Resources.MergedDictionaries.Add(themeDict);
+        }
     }
     
 }
